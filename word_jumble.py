@@ -5,21 +5,18 @@
 
 import random
 
-# create a sequence of words to choose from
 WORDS = ("python", "jumble", "easy", "difficult", "answer", "xylophone")
-# pick one word randomly from the sequence
+
 word = random.choice(WORDS)
-# create a variable to use later to see if the guess is correct
+
 correct = word
 
-# create a jumbled version of the word
 jumble =""
 while word:
     position = random.randrange(len(word))
     jumble += word[position]
     word = word[:position] + word[(position + 1):]
 
-# start the game
 print(
 """
            Welcome to Word Jumble!
@@ -30,10 +27,34 @@ print(
 )
 print("The jumble is:", jumble)
 
-guess = input("\nYour guess: ")
+
+guess = input("\nYou can either guess the word or get a (H)int: ")
 while guess != correct and guess != "":
-    print("Sorry, that's not it.")
-    guess = input("Your guess: ")
+    
+    if guess in ("H","h"):
+        
+        if correct == "python":
+            guess = input("It's a type of snake.")
+            
+        elif correct == "jumble":
+            guess = input("It's what i'm doing to these words.")
+
+        elif correct == "easy":
+            guess = input("The opposite of hard.")
+
+        elif correct == "difficult":
+            guess = input("The opposite of easy.")
+
+        elif correct == "answer":
+            guess = input("You are trying to figure out the ______.")
+
+        elif correct == "xylophone":
+            guess = input("You can find this in a music store.")
+            
+    else:
+        print("Sorry, that's not it.")
+        guess = input("\nYou can either guess the word or get a (H)int: ")
+        
     
 if guess == correct:
     print("That's it!  You guessed it!\n")
